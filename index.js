@@ -16,7 +16,7 @@ const time = document.getElementById('time');
     })
     .then(data => {
         document.getElementById("crypto-top").innerHTML = `
-            <img src=${data.image.small} />
+            <img src=${data.image.small}/>
             <span>${data.name}</span>
         `
         document.getElementById("crypto").innerHTML += `
@@ -28,6 +28,7 @@ const time = document.getElementById('time');
     .catch(err => console.error(err))
 
 //_____________________________________________________________________________________________________________________________________________________
+
 // TIME API NOT REALLY URL API 
 async function showingTime() {
     //For Time 
@@ -35,6 +36,7 @@ async function showingTime() {
         time.textContent = date.toLocaleTimeString("en-us", {timeStyle: "medium"});
 } //console.log(`Must show something on time here: ${Object.datetime}` OR ${data.datetime}); // Shows undefined OR API not reachable
 setInterval(showingTime, 1000)
+
 //____________________________________________________-________________________________________________________________________________________________
 
 // WEATHER API 
@@ -57,27 +59,8 @@ navigator.geolocation.getCurrentPosition(position => {
         .catch(err => console.error(err))
 });
 
-/* 
-async function weatherData() {
-    //For Background Image
-    fetch("https://api.openweathermap.org/data/2.5/weather?lat={-26.204103}&lon={28.047304}&appid={629d2a029b460bcf0468f37935ae55db}")
-        .then(res => res.json())
-        .then(data => console.log(data))
-  
-    const weather = document.querySelector('.weather');
-    weather.textContent = `${Object.timezone}`;
-  }
-  
-*/
-/* 
-function weatherData() {
-    // For Background Image
-    fetch("https://api.openweathermap.org/data/2.5/weather?lat={-26.204103}&lon={28.047304}&appid={629d2a029b460bcf0468f37935ae55db}")
-        .then(res => res.json())
-        .then(data => console.log(data))
-    }
-*/
-
+//_____________________________________________________________________________________________________________________________________________________
+// BACKGROUND SHUFFLE IMAGE API 
 function showWeatherBackground() {
     // For Background Image
     fetch("https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature")
@@ -88,7 +71,4 @@ function showWeatherBackground() {
             document.getElementById("author").textContent = `By: ${data.user.name}`
         })  
     }
-   
-    //weatherData()
-   
     showWeatherBackground()
