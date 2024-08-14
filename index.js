@@ -4,7 +4,7 @@ const time = document.getElementById('time');
 
 //_____________________________________________________________________________________________________________________________________________________
 // CRYPTO API 
-
+/*
    //function forCrypto() {
     //For Crypto
     fetch("https://api.coingecko.com/api/v3/coins/dogecoin") 
@@ -20,16 +20,16 @@ const time = document.getElementById('time');
             <span>${data.name}</span>
         `
         document.getElementById("crypto").innerHTML += `
-            <p>: $${data.market_data.current_price.zar}</p>
-            <p>: $${data.market_data.high_24h.zar}</p>
-            <p>: $${data.market_data.low_24h.zar}</p>
+            <p>: $${data.market_data.current_price.usd}</p>
+            <p>: $${data.market_data.high_24h.usd}</p>
+            <p>: $${data.market_data.low_24h.usd}</p>
         `
     })
-    .catch(err => console.error(err))
-
+    //.catch(err => console.error(err))
+*/
 //_____________________________________________________________________________________________________________________________________________________
-
 // TIME API NOT REALLY URL API 
+
 async function showingTime() {
     //For Time 
     const date = new Date() 
@@ -37,7 +37,10 @@ async function showingTime() {
 } //console.log(`Must show something on time here: ${Object.datetime}` OR ${data.datetime}); // Shows undefined OR API not reachable
 setInterval(showingTime, 1000)
 
-//____________________________________________________-________________________________________________________________________________________________
+//_____________________________________________________________________________________________________________________________________________________
+
+const weatherContent = document.getElementsByClassName('weather');
+console.log(weatherContent);
 
 // WEATHER API 
 navigator.geolocation.getCurrentPosition(position => {
@@ -50,13 +53,12 @@ navigator.geolocation.getCurrentPosition(position => {
         }) 
         .then(data => {
             const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-            weather.textContent = `
-            <img src= ${iconUrl} />
+            weatherContent.textContent = `${iconUrl}; 
             <p class="weather-temp">${Math.round(data.main.temp)}</P
             <p class="waether-city">${data.name}</p>
             `
         })
-        .catch(err => console.error(err))
+       // .catch(err => console.log(err))
 });
 
 //_____________________________________________________________________________________________________________________________________________________
