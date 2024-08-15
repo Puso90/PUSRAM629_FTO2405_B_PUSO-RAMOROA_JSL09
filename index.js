@@ -1,32 +1,33 @@
-const crypto_data = document.querySelector('.crypto');
-const weather = document.querySelector('.weather');
+const cryptoTop = document.querySelector('#crypto-top');
+const crypto = document.querySelector('#crypto');
+const weather = document.querySelector('#weather');
 const time = document.getElementById('time');
 
 //_____________________________________________________________________________________________________________________________________________________
 // CRYPTO API 
-/*
+
    //function forCrypto() {
     //For Crypto
     fetch("https://api.coingecko.com/api/v3/coins/dogecoin") 
-    .then(res => {
-        if (!res.ok) {
-            throw Error("Something went wrong")
-        }
-        return res.json()
-    })
-    .then(data => {
-        document.getElementById("crypto-top").innerHTML = `
-            <img src=${data.image.small}/>
-            <span>${data.name}</span>
-        `
-        document.getElementById("crypto").innerHTML += `
-            <p>: $${data.market_data.current_price.usd}</p>
-            <p>: $${data.market_data.high_24h.usd}</p>
-            <p>: $${data.market_data.low_24h.usd}</p>
-        `
-    })
-    //.catch(err => console.error(err))
-*/
+        .then(res => {
+            if (!res.ok) {
+                throw Error("Something went wrong")
+            }
+            return res.json()
+        })
+        .then(data => {
+            cryptoTop.innerHTML = `
+                <img src=${data.image.small}/>
+                <span>${data.name}</span>
+            `
+            crypto.innerHTML += `
+                <p>: $${data.market_data.current_price.usd}</p>
+                <p>: $${data.market_data.high_24h.usd}</p>
+                <p>: $${data.market_data.low_24h.usd}</p>
+            `
+        })
+        .catch(error => console.log(error))
+
 //_____________________________________________________________________________________________________________________________________________________
 // TIME API NOT REALLY URL API 
 
@@ -39,8 +40,7 @@ setInterval(showingTime, 1000)
 
 //_____________________________________________________________________________________________________________________________________________________
 
-const weatherContent = document.getElementsByClassName('weather');
-console.log(weatherContent);
+
 
 // WEATHER API 
 navigator.geolocation.getCurrentPosition(position => {
@@ -53,12 +53,13 @@ navigator.geolocation.getCurrentPosition(position => {
         }) 
         .then(data => {
             const iconUrl = `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`
-            weatherContent.textContent = `${iconUrl}; 
-            <p class="weather-temp">${Math.round(data.main.temp)}</P
-            <p class="waether-city">${data.name}</p>
+            document.getElementsById("weather").innerHTML = `
+                <img src=${iconUrl} />
+                <p class="weather-temp">${Math.round(data.main.temp)} </p>
+                <p class="weather-city">${data.name} </p>
             `
         })
-       // .catch(err => console.log(err))
+       .catch(error => console.log(error))
 });
 
 //_____________________________________________________________________________________________________________________________________________________
