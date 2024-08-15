@@ -8,7 +8,7 @@ const time = document.getElementById('time');
 
    //function forCrypto() {
     //For Crypto
-    fetch("https://api.coingecko.com/api/v3/coins/dogecoin") 
+    fetch("https://api.coingecko.com/api/v3/coins/cardano") 
         .then(res => {
             if (!res.ok) {
                 throw Error("Something went wrong")
@@ -16,17 +16,19 @@ const time = document.getElementById('time');
             return res.json()
         })
         .then(data => {
+            console.log(data)
             cryptoTop.innerHTML = `
                 <img src=${data.image.small}/>
                 <span>${data.name}</span>
             `
             crypto.innerHTML += `
-                <p>: $${data.market_data.current_price.usd}</p>
-                <p>: $${data.market_data.high_24h.usd}</p>
-                <p>: $${data.market_data.low_24h.usd}</p>
+                <p>Current Price: R${data.market_data.current_price.zar}</p>
+                <p>High 24h: R${data.market_data.high_24h.zar}</p>
+                <p>Low 24h: R${data.market_data.low_24h.zar}</p>
             `
         })
         .catch(error => console.log(error))
+        
 
 //_____________________________________________________________________________________________________________________________________________________
 // TIME API NOT REALLY URL API 
